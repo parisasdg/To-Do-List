@@ -107,5 +107,10 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
+  }@else {
+  <div class="empty-box">
+    <img height="300px" src="/empty-box.svg" />
+    <p>تسکی وجود ندارد.</p>
+  </div>
   }
 </div>

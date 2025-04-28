@@ -44,3 +44,10 @@ mat-icon {
 mat-icon:hover {
   color: #7d00fa;
 }
+
+.empty-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
