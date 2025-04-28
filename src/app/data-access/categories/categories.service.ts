@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Category } from './categories.type';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {
   private _httpClient = inject(HttpClient);
-
-  private readonly baseUrl = 'http://localhost:3000/api';
 
   private _categories: BehaviorSubject<Category[]> = new BehaviorSubject<
     Category[]
@@ -19,13 +18,13 @@ export class CategoryService {
 
   getCategories(): Observable<Category[]> {
     return this._httpClient
-      .get<Category[]>(`${this.baseUrl}/lists`)
+      .get<Category[]>(`${environment.baseUrl}/lists`)
       .pipe(tap((res) => this._categories.next(res)));
   }
 
   insertCategory(category: Category): Observable<Category> {
     return this._httpClient
-      .post<Category>(`${this.baseUrl}/lists`, category)
+      .post<Category>(`${environment.baseUrl}/lists`, category)
       .pipe(
         tap((res) => {
           this._categories.value.push(res);
@@ -36,7 +35,7 @@ export class CategoryService {
 
   updateCategory(category: Category): Observable<Category> {
     return this._httpClient
-      .put<Category>(`${this.baseUrl}/lists/${category._id}`, category)
+      .put<Category>(`${environment.baseUrl}/lists/${category._id}`, category)
       .pipe(
         tap((res) => {
           if (this._categories.value) {
@@ -51,7 +50,7 @@ export class CategoryService {
 
   deleteCategory(id: string): Observable<Category> {
     return this._httpClient
-      .delete<Category>(`${this.baseUrl}/lists/${id}`)
+      .delete<Category>(`${environment.baseUrl}/lists/${id}`)
       .pipe(
         tap(() => {
           const updatedCategory = this._categories.value.filter(

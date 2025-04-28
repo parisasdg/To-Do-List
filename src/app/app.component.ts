@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
       if (categories.length > 0) {
         const mainCategory = categories.find((c) => c.isMain);
         if (mainCategory) {
-          this.router.navigate(['/list/daily', mainCategory._id]);
+          this.router.navigate(['/list', mainCategory._id]);
         }
       }
     });

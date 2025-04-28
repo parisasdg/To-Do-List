@@ -18,9 +18,7 @@
     @for (item of categories; track $index) {
     <mat-list-item
       role="listitem"
-      [routerLink]="
-        item.isMain ? ['/list', 'daily', item._id] : ['/list', item._id]
-      "
+      [routerLink]="['/list', item._id]"
       [routerLinkActive]="'active-route'"
       [routerLinkActiveOptions]="{ exact: true }"
     >
