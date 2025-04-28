@@ -1,0 +1,42 @@
+<div class="list-wrapper">
+  <div class="add-list-button">
+    <button mat-raised-button color="primary" (click)="onAddCategoryDialog()">
+      افزودن لیست
+    </button>
+  </div>
+
+  <mat-list role="list">
+    <mat-list-item
+      role="completedTaskList"
+      [routerLink]="['/completedTask']"
+      [routerLinkActive]="'active-route'"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <div class="list-item-container">لیست کارهای انجام شده</div>
+    </mat-list-item>
+
+    @for (item of categories; track $index) {
+    <mat-list-item
+      role="listitem"
+      [routerLink]="
+        item.isMain ? ['/list', 'daily', item._id] : ['/list', item._id]
+      "
+      [routerLinkActive]="'active-route'"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <div class="list-item-container">
+        <div>
+          {{ item.isMain ? "لیست کارهای روزانه" : item.title }}
+        </div>
+
+        @if (!item.isMain) {
+        <div class="icon-actions" (click)="$event.stopPropagation()">
+          <mat-icon (click)="deleteCategory(item)">delete_outline</mat-icon>
+          <mat-icon (click)="editCategory(item)">mode_edit_outline</mat-icon>
+        </div>
+        }
+      </div>
+    </mat-list-item>
+    }
+  </mat-list>
+</div>

@@ -1,0 +1,46 @@
+.dashboard-header {
+  width: calc(100vw - 420px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-list {
+  padding: 0px 48px;
+}
+
+.table-header {
+  background-color: #eadef7 !important;
+}
+
+.add-list-btn {
+  margin: 0px 8px;
+}
+
+.table-container {
+  margin-top: 48px;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+.category-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-category-icon {
+  margin: 0px 8px;
+  cursor: pointer;
+}
+
+mat-icon {
+  cursor: pointer;
+  transition: color 0.1s;
+}
+
+mat-icon:hover {
+  color: #7d00fa;
+}

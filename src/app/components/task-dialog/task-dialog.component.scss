@@ -1,0 +1,19 @@
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.icon-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-actions mat-icon {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.icon-actions mat-icon:hover {
+  color: #7d00fa;
+}

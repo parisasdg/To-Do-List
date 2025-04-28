@@ -1,0 +1,111 @@
+@if (category) {
+<div class="dashboard-header">
+  <div class="category-name">
+    <h3>
+      لیست
+      {{ category.isMain ? "کارهای روزانه" : category.title }}
+    </h3>
+    @if (!category.isMain) {
+    <mat-icon class="edit-category-icon" (click)="editCategory(category)"
+      >mode_edit_outline</mat-icon
+    >
+    }
+  </div>
+  <div>
+    @if (category.isMain) {
+    <button
+      class="add-list-btn"
+      mat-raised-button
+      color="primary"
+      (click)="onAddCategoryDialog()"
+    >
+      افزودن لیست
+    </button>
+    }
+    <button mat-raised-button color="primary" (click)="onAddTaskDialog()">
+      افزودن کار
+    </button>
+  </div>
+</div>
+}
+<div class="task-list">
+  @if (tasks && tasks.length>0) {
+  <div class="table-container">
+    <table
+      [dir]="'rtl'"
+      mat-table
+      [dataSource]="dataSource"
+      class="full-width-table"
+    >
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>عنوان</th>
+        <td mat-cell *matCellDef="let task">{{ task.title }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>توضیحات</th>
+        <td mat-cell *matCellDef="let task">{{ task.description || "-" }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>تاریخ</th>
+        <td mat-cell *matCellDef="let task">
+          {{ task.date | persianDate }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let task">
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="حذف"
+            (click)="deleteTask(task)"
+          >
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="ویرایش"
+            (click)="editTask(task)"
+          >
+            <mat-icon>mode_edit_outline</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="{{ task.done ? 'تسک تکمیل شده' : 'تسک را انجام دهید' }}"
+            (click)="completeTask(task)"
+          >
+            @if (!task.done) {
+            <mat-icon>check_circle_outline</mat-icon>
+            }@else {
+            <mat-icon>check_circle</mat-icon>
+
+            }
+          </button>
+          @if (!this.category?.isMain) {
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="انتقال به روزانه"
+            (click)="moveToDailyList(task)"
+          >
+            <mat-icon>undo</mat-icon>
+          </button>
+          }
+        </td>
+      </ng-container>
+
+      <tr
+        class="table-header"
+        mat-header-row
+        *matHeaderRowDef="displayedColumns"
+      ></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  }
+</div>

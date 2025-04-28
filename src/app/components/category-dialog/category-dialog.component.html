@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>{{ data ? "ویرایش" : "افزودن" }} لیست</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-label>عنوان</mat-label>
+    <input matInput required [formControl]="title" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">لغو</button>
+  <button mat-button (click)="addCategory()" cdkFocusInitial>
+    {{ data ? "ویرایش" : "افزودن" }}
+  </button>
+</mat-dialog-actions>

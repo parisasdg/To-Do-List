@@ -1,0 +1,35 @@
+.list-wrapper {
+  padding: 48px 0px;
+}
+
+.add-list-button {
+  margin: 16px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.list-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.icon-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-actions mat-icon {
+  cursor: pointer;
+  transition: color 0.1s;
+}
+
+.icon-actions mat-icon:hover {
+  color: #7d00fa;
+}
+
+.active-route {
+  background-color: #eadef7;
+}
